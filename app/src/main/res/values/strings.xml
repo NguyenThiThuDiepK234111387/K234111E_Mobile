@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">K234111E_Mobile</string>
+    <string name="str_welcome">Welcome to my world! </string>
+    <string name="str_clickme">Click me!</string>
+    <string name="str_loginsystem">Login System</string>
+    <string name="str_password">Password</string>
+    <string name="str_username">User name</string>
+    <string name="str_hint_password">"Enter your password "</string>
+    <string name="str_hint_username">Enter your username</string>
+    <string name="str_Login">Login</string>
+    <string name="str_Exit">Exit</string>
+    <string name="str_Login_success">Login successful!!!</string>
+    <string name="str_Login_failed">Login Fail!!!</string>
+</resources>

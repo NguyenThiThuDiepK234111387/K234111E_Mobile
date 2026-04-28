@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">K234111E_Mobile</string>
+    <string name="str_welcome">Xin chào người đẹp</string>
+    <string name="str_clickme">Bấm tại đây!</string>
+    <string name="str_loginsystem">Hệ thống đăng nhập</string>
+    <string name="str_password">"Mật khẩu "</string>
+    <string name="str_username">Tên đăng nhập</string>
+    <string name="str_hint_password">Nhập mật khẩu của bạn</string>
+    <string name="str_hint_username">Nhập tên đăng nhập của bạn</string>
+    <string name="str_Login">Đăng nhập</string>
+    <string name="str_Exit">Đăng xuất</string>
+    <string name="str_Login_success">Đăng nhập thành công!!!</string>
+    <string name="str_Login_failed">Đăng nhập thất bạil!!!</string>
+</resources>
