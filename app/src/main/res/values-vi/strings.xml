@@ -11,4 +11,15 @@
     <string name="str_Exit">Đăng xuất</string>
     <string name="str_Login_success">Đăng nhập thành công!!!</string>
     <string name="str_Login_failed">Đăng nhập thất bạil!!!</string>
+    <string name="str_mc">MC</string>
+    <string name="str_mr">MR</string>
+    <string name="str_m_plus">M+</string>
+    <string name="str_m_minus">M-</string>
+    <string name="str_ms">MS</string>
+    <string name="str_m">M</string>
+    <string name="str_open_calculator">Mở máy tính bỏ túi</string>
+    <string name="str_save_login">Lưu thông tin đăng nhập</string>
+    <string name="str_admin_right">Admin</string>
+    <string name="str_employee_right">Employee</string>
+    <string name="str_login_role">Login Role</string>
 </resources>

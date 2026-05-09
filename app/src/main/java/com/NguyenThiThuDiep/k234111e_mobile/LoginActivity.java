@@ -1,9 +1,14 @@
 package com.NguyenThiThuDiep.k234111e_mobile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,12 +18,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
+
     /*
     declare all view as variables
     * */
     EditText edtUserName;
     EditText edtPassword;
     TextView txtMessage;
+    CheckBox chkSaveInfor;
+    String shared_pref_key="LoginInfor";
+
+    RadioButton radAdmin,radEmployee;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,23 +47,81 @@ public class LoginActivity extends AppCompatActivity {
         edtUserName=findViewById(R.id.edtUserName);
         edtPassword=findViewById(R.id.edtPassword);
         txtMessage=findViewById(R.id.txtMessage);
+        chkSaveInfor=findViewById(R.id.chkSaveInfor);
+        radAdmin=findViewById(R.id.radAdmin);
+        radEmployee=findViewById(R.id.radEmployee);
     }
 
     public void loginSystem(View view) {
         String username=edtUserName.getText().toString();
         String password=edtPassword.getText().toString();
-        if (username.equalsIgnoreCase("admin") &&
+        boolean saved=false;
+        if(chkSaveInfor.isChecked())
+            saved=true;
+        if(username.equalsIgnoreCase("admin") &&
                 password.equals("123"))
         {
             txtMessage.setText(getString(R.string.str_Login_success));
-            Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+
+            //Save login information:
+            SharedPreferences preferences=getSharedPreferences(shared_pref_key,MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("UserName",username);
+            editor.putString("Password",password);
+            editor.putBoolean("Saved",saved);
+            editor.commit();
+            if (radAdmin.isChecked()) {
+                //dĩ nhiên phải check có quyền admin hay không?
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent=new Intent(LoginActivity.this, EmployeeManagementActivity.class);
+                startActivity(intent);
+            }
         }
         else
+        {
             txtMessage.setText(getString(R.string.str_Login_failed));
+        }
     }
 
     public void exitSystem(View view) {
-        finish();
+        //finish();
+        //confirmation for exit:
+        AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Confirm exit");
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        //handling user interaction:
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences=getSharedPreferences(shared_pref_key,MODE_PRIVATE);
+        String username=preferences.getString("UserName","");
+        String password=preferences.getString("Password","");
+        boolean saved=preferences.getBoolean("Saved",false);
+        if(saved==true)
+        {
+            edtUserName.setText(username);
+            edtPassword.setText(password);
+        }
+        chkSaveInfor.setChecked(saved);
     }
 }

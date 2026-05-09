@@ -24,6 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.K234111E_Mobile">
         <activity
+            android:name=".EmployeeManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalculatorActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -37,12 +43,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
