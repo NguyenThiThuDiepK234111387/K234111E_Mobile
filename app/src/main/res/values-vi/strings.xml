@@ -3,14 +3,14 @@
     <string name="str_welcome">Xin chào người đẹp</string>
     <string name="str_clickme">Bấm tại đây!</string>
     <string name="str_loginsystem">Hệ thống đăng nhập</string>
-    <string name="str_password">"Mật khẩu "</string>
+    <string name="str_password">Mật khẩu</string>
     <string name="str_username">Tên đăng nhập</string>
     <string name="str_hint_password">Nhập mật khẩu của bạn</string>
     <string name="str_hint_username">Nhập tên đăng nhập của bạn</string>
     <string name="str_Login">Đăng nhập</string>
-    <string name="str_Exit">Đăng xuất</string>
+    <string name="str_Exit">Thoát</string>
     <string name="str_Login_success">Đăng nhập thành công!!!</string>
-    <string name="str_Login_failed">Đăng nhập thất bạil!!!</string>
+    <string name="str_Login_failed">Đăng nhập thất bại!!!</string>
     <string name="str_mc">MC</string>
     <string name="str_mr">MR</string>
     <string name="str_m_plus">M+</string>
@@ -19,7 +19,58 @@
     <string name="str_m">M</string>
     <string name="str_open_calculator">Mở máy tính bỏ túi</string>
     <string name="str_save_login">Lưu thông tin đăng nhập</string>
-    <string name="str_admin_right">Admin</string>
-    <string name="str_employee_right">Employee</string>
-    <string name="str_login_role">Login Role</string>
+    <string name="str_admin_right">Quản trị viên</string>
+    <string name="str_employee_right">Nhân viên</string>
+    <string name="str_login_role">Đăng nhập với vai trò</string>
+    <string name="str_employee_id">Mã nhân viên</string>
+    <string name="str_employee_name">Tên nhân viên</string>
+    <string name="str_phone_number">Số điện thoại</string>
+    <string name="str_save">Lưu</string>
+    <string name="str_delete">Xóa</string>
+    <string name="str_ask_exit">Bạn có chắc chắn muốn thoát?</string>
+    <string name="str_confirm_delete">Bạn có chắc chắn muốn xóa nhân viên này?</string>
+    <string name="str_input_full_info">Vui lòng nhập đầy đủ thông tin!</string>
+    <string name="str_added_employee">Đã thêm nhân viên!</string>
+    <string name="str_updated_employee">Đã cập nhật nhân viên!</string>
+    <string name="str_select_to_delete">Vui lòng chọn nhân viên cần xóa!</string>
+    <string name="str_deleted_employee">Đã xóa nhân viên!</string>
+    <string name="str_department">Phòng ban</string>
+    <string name="str_employees">Danh sách nhân viên</string>
+    <string name="str_birthplace">Nơi sinh:</string>
+    <string-array name="list_birthplace">
+        <item>TP. Hà Nội</item>
+        <item>TP. Hồ Chí Minh</item>
+        <item>TP. Hải Phòng</item>
+        <item>TP. Đà Nẵng</item>
+        <item>TP. Cần Thơ</item>
+        <item>TP. Huế</item>
+        <item>An Giang</item>
+        <item>Bắc Ninh</item>
+        <item>Cà Mau</item>
+        <item>Cao Bằng</item>
+        <item>Đắk Lắk</item>
+        <item>Điện Biên</item>
+        <item>Đồng Nai</item>
+        <item>Đồng Tháp</item>
+        <item>Gia Lai</item>
+        <item>Hà Tĩnh</item>
+        <item>Hưng Yên</item>
+        <item>Khánh Hòa</item>
+        <item>Lai Châu</item>
+        <item>Lâm Đồng</item>
+        <item>Lạng Sơn</item>
+        <item>Lào Cai</item>
+        <item>Nghệ An</item>
+        <item>Ninh Bình</item>
+        <item>Phú Thọ</item>
+        <item>Quảng Ngãi</item>
+        <item>Quảng Ninh</item>
+        <item>Quảng Trị</item>
+        <item>Sơn La</item>
+        <item>Tây Ninh</item>
+        <item>Thái Nguyên</item>
+        <item>Thanh Hóa</item>
+        <item>Tuyên Quang</item>
+        <item>Vĩnh Long</item>
+    </string-array>
 </resources>

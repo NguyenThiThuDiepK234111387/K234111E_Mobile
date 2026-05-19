@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -76,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             else {
-                Intent intent=new Intent(LoginActivity.this, EmployeeManagementActivity.class);
+                //Intent intent=new Intent(LoginActivity.this, EmployeeManagementActivity.class);
+                Intent intent=new Intent(LoginActivity.this, EmployeeAdvancedManagementActivity.class);
                 startActivity(intent);
             }
         }

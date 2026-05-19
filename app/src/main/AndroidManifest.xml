@@ -24,6 +24,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.K234111E_Mobile">
         <activity
+            android:name=".AddEmployeeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmployeeCustomItem"
+            android:exported="false" />
+        <activity
+            android:name=".EmployeeAdvancedManagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".EmployeeManagementActivity"
             android:exported="false" />
         <activity
@@ -43,9 +52,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

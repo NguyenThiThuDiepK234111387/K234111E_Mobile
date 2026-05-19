@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EmployeeAdvancedManagementActivity">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CDDC39"
+        android:text="@string/str_department" />
+
+    <Spinner
+        android:id="@+id/spDepartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CDDC39"
+        android:text="@string/str_employees" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgAddEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/ic_add_employee" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:background="#E91E63" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/imgEditEmployee"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_edit_employee" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:background="#E91E63" />
+
+        <ImageView
+            android:id="@+id/imgDeleteEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/ic_delete_employee" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
