@@ -1,6 +1,8 @@
 package com.NguyenThiThuDiep.k234111e_mobile;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -11,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.NguyenThiThuDiep.models.Employee;
 
 public class AddEmployeeActivity extends AppCompatActivity {
 
@@ -32,12 +36,34 @@ public class AddEmployeeActivity extends AppCompatActivity {
             return insets;
         });
     }
-
     private void addEvents() {
+        imgSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                processAddEmployee();
+            }
+        });}
 
-    }
+            private void processAddEmployee() {
+                String id=edtId.getText().toString();
+                String name=edtName.getText().toString();
+                String phone=edtPhone.getText().toString();
+                String birthplace=actBirthplace.getText().toString();
 
-    private void addViews() {
+                Employee emp=new Employee(id,name,phone,birthplace);
+                Intent intent=getIntent();
+                intent.putExtra("EMPLOYEE",emp);
+                //đánh dấu gói tin gửi về với mã là 888 (resultCode)
+                setResult(888,intent);
+                //phải đóng màn hình này lại
+                //vi màn hình kia cần có chế để Forefround Life (onresume phải thực thi)
+                //thi mới tương tác lấy dữ liệu được
+                finish();
+
+            }
+
+
+            private void addViews() {
         edtId=findViewById(R.id.edtId);
         edtName=findViewById(R.id.edtName);
         edtPhone=findViewById(R.id.edtPhone);

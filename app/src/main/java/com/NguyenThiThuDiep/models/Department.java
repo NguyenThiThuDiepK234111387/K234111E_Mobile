@@ -50,4 +50,8 @@ public class Department {
     public ArrayList<Employee> getListOfEmployee() {
         return listOfEmployee;
     }
+
+    public Object getId() {
+        return departmentId;
+    }
 }

@@ -1,6 +1,8 @@
 package com.NguyenThiThuDiep.models;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable { //nhớ thêm implements Serializable nhé để khỏi null
     private String employeeId;
     private String employeeName;
     private String phoneNumber;
@@ -13,6 +15,8 @@ public class Employee {
     public void setBirthPlace(String birthPlace) {
         this.birthPlace = birthPlace;
     }
+    public Employee() {
+    }
 
     public Employee(String employeeId, String employeeName, String phoneNumber, String birthPlace) {
         this(employeeId,employeeName,phoneNumber);
@@ -24,10 +28,6 @@ public class Employee {
         this.employeeName = employeeName;
         this.phoneNumber = phoneNumber;
     }
-
-    public Employee() {
-    }
-
     public String getEmployeeId() {
         return employeeId;
     }

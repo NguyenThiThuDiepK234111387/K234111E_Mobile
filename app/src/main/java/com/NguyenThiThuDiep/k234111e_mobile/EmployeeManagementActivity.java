@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +28,8 @@ public class EmployeeManagementActivity extends AppCompatActivity {
     ArrayAdapter<String>adapterEmployee;
 
     EditText edtEmployeeId,edtEmployeeName,edtPhoneNumber;
+    Spinner spnBirthPlace;
+    ArrayAdapter<CharSequence> adapterBirthPlace;
     int selectedIndex = -1;
 
     @Override
@@ -62,17 +65,22 @@ public class EmployeeManagementActivity extends AppCompatActivity {
         edtEmployeeId.setText(id);
         edtEmployeeName.setText(name);
         edtPhoneNumber.setText(phone);
+        if (arr.length > 3) {
+            String birthPlace = arr[3];
+            int spinnerPosition = adapterBirthPlace.getPosition(birthPlace);
+            spnBirthPlace.setSelection(spinnerPosition);
+        }
     }
 
     private void addViews() {
         lvEmployee=findViewById(R.id.lvEmployee);
 
         listEmployee=new ArrayList<>();
-        listEmployee.add("e1-tèo-0981234561");
-        listEmployee.add("e2-tý-0935235212");
-        listEmployee.add("e3-bin-0942256671");
-        listEmployee.add("e4-Bo-0910909012");
-        listEmployee.add("e5-Tủn-098789234");
+        listEmployee.add("e1-tèo-0981234561-TP. Hồ Chí Minh");
+        listEmployee.add("e2-tý-0935235212-An Giang");
+        listEmployee.add("e3-bin-0942256671-TP. Hà Nội");
+        listEmployee.add("e4-Bo-0910909012-TP. Cần Thơ");
+        listEmployee.add("e5-Tủn-098789234-Đồng Nai");
 
         adapterEmployee=new ArrayAdapter<>
                 (this,
@@ -84,6 +92,11 @@ public class EmployeeManagementActivity extends AppCompatActivity {
         edtEmployeeId=findViewById(R.id.edtEmployeeId);
         edtEmployeeName=findViewById(R.id.edtEmployeeName);
         edtPhoneNumber=findViewById(R.id.edtPhoneNumber);
+        spnBirthPlace = findViewById(R.id.spnBirthPlace);
+        adapterBirthPlace = ArrayAdapter.createFromResource(this,
+                R.array.list_birthplace, android.R.layout.simple_spinner_item);
+        adapterBirthPlace.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnBirthPlace.setAdapter(adapterBirthPlace);
     }
 
     public void closeEmployeeActivity(View view) {
@@ -112,7 +125,8 @@ public class EmployeeManagementActivity extends AppCompatActivity {
         String id = edtEmployeeId.getText().toString();
         String name = edtEmployeeName.getText().toString();
         String phone = edtPhoneNumber.getText().toString();
-        String text = id + "-" + name + "-" + phone;
+        String birthPlace = spnBirthPlace.getSelectedItem().toString();
+        String text = id + "-" + name + "-" + phone + "-" + birthPlace;
 
         int foundIndex = -1;
         for (int i = 0; i < listEmployee.size(); i++) {

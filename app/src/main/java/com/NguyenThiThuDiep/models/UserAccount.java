@@ -1,0 +1,70 @@
+package com.NguyenThiThuDiep.models;
+
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class UserAccount implements Serializable {
+    //muốn chuyển màn hình thì phải luôn luôn có implement Serializable
+    private String username;
+    private String password;
+    private String role;
+    private boolean isSaved;
+    private String displayName;
+    //nickname để dấu tên thật đi
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    //bấm chuột phải generate -> chọn contractor và gentter sectter
+    public UserAccount() {
+    }
+    public UserAccount(String username, String password, String role, String displayName, boolean isSaved) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.displayName = displayName;
+        this.isSaved = isSaved;
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(boolean saved) {
+        isSaved = saved;
+    }
+
+    @NonNull
+    public String toString(){
+        return this.username;
+    }
+}

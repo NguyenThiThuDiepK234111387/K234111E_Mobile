@@ -5,4 +5,8 @@
     <color name="yellow">#DBCC3D</color>
     <color name="pink">#FF6699</color>
     <color name="green">#4CAF50</color>
+    <color name="order_completed">#6A0DAD</color>
+    <color name="order_not_yet_payment">#FF9800</color>
+    <color name="order_going_logistic">#009688</color>
+    <color name="order_customer_complain">#1E90FF</color>
 </resources>

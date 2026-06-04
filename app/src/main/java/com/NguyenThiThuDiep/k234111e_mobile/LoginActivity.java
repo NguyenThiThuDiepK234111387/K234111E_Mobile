@@ -18,6 +18,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.NguyenThiThuDiep.models.ListUserAccount;
+import com.NguyenThiThuDiep.models.UserAccount;
+
 public class LoginActivity extends AppCompatActivity {
 
     /*
@@ -52,8 +55,45 @@ public class LoginActivity extends AppCompatActivity {
         radAdmin=findViewById(R.id.radAdmin);
         radEmployee=findViewById(R.id.radEmployee);
     }
-
     public void loginSystem(View view) {
+        String username=edtUserName.getText().toString();
+        String password=edtPassword.getText().toString();
+        boolean saved=false;
+        if(chkSaveInfor.isChecked())
+            saved=true;
+        //call login function:
+        UserAccount ac= ListUserAccount.login(username,password);
+        if(ac!=null)//login success!
+        {
+            ac.setSaved(saved);
+
+            SharedPreferences preferences=getSharedPreferences(shared_pref_key,MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("UserName",username);
+            editor.putString("Password",password);
+            editor.putBoolean("Saved",saved);
+            editor.commit();
+
+            if(ac.getRole().equals("admin"))
+            {
+                //Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent=new Intent(LoginActivity.this, OrderManagementActivity.class);
+                intent.putExtra("LOGIN_USER",ac);
+                startActivity(intent);
+            }
+            else
+            {
+                Intent intent=new Intent(LoginActivity.this, EmployeeAdvancedManagementActivity.class);
+                intent.putExtra("Account",ac);
+                startActivity(intent);
+            }
+        }
+        else//login failed
+        {
+            txtMessage.setText(getString(R.string.str_login_failed));
+        }
+    }
+    public void loginSystemOld(View view) {
         String username=edtUserName.getText().toString();
         String password=edtPassword.getText().toString();
         boolean saved=false;
@@ -62,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         if(username.equalsIgnoreCase("admin") &&
                 password.equals("123"))
         {
-            txtMessage.setText(getString(R.string.str_Login_success));
+            txtMessage.setText(getString(R.string.str_login_success));
 
             //Save login information:
             SharedPreferences preferences=getSharedPreferences(shared_pref_key,MODE_PRIVATE);
@@ -84,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else
         {
-            txtMessage.setText(getString(R.string.str_Login_failed));
+            txtMessage.setText(getString(R.string.str_login_failed));
         }
     }
 

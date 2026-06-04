@@ -55,6 +55,18 @@
             android:ems="10"
             android:inputType="phone" />
 
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_birthplace"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/spnBirthPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <LinearLayout
