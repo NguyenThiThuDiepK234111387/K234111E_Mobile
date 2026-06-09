@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.K234111E_Mobile">
         <activity
+            android:name=".CategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderManagementActivity"
             android:exported="false" />
         <activity

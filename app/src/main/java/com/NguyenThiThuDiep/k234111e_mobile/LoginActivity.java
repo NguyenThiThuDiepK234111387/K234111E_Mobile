@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.NguyenThiThuDiep.models.ListUserAccount;
 import com.NguyenThiThuDiep.models.UserAccount;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,6 +41,47 @@ public class LoginActivity extends AppCompatActivity {
     String shared_pref_key="LoginInfor";
 
     RadioButton radAdmin,radEmployee;
+    public static final String DATABASE_NAME = "K234111ESale.sqlite";
+    //Thi chỉ cần đổi cái database dòng 44 thôi K234111ESale.sqlite
+    public static final String DB_PATH_SUFFIX = "/databases/";
+    public static SQLiteDatabase database = null;
+    private void copyDataBase(){
+        try{
+            File dbFile = getDatabasePath(DATABASE_NAME);
+            if(!dbFile.exists()){
+                if(CopyDBFromAsset()){
+                    Toast.makeText(LoginActivity.this,
+                            "Copy database successful!", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(LoginActivity.this,
+                            "Copy database fail!", Toast.LENGTH_LONG).show();
+                }
+            }
+        }catch (Exception e){
+            Log.e("Error: ", e.toString());
+        }
+    }
+    private boolean CopyDBFromAsset() {
+        String dbPath = getApplicationInfo().dataDir + DB_PATH_SUFFIX + DATABASE_NAME;
+        try {
+            InputStream inputStream = getAssets().open(DATABASE_NAME);
+            File f = new File(getApplicationInfo().dataDir + DB_PATH_SUFFIX);
+            if(!f.exists()){
+                f.mkdir();
+            }
+            OutputStream outputStream = new FileOutputStream(dbPath);
+            byte[] buffer = new byte[1024]; int length;
+            while((length=inputStream.read(buffer))>0){
+                outputStream.write(buffer,0, length);
+            }
+            outputStream.flush();  outputStream.close(); inputStream.close();
+            return  true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         addViews();
+        copyDataBase();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -77,7 +127,8 @@ public class LoginActivity extends AppCompatActivity {
             if(ac.getRole().equals("admin"))
             {
                 //Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                Intent intent=new Intent(LoginActivity.this, OrderManagementActivity.class);
+                //Intent intent=new Intent(LoginActivity.this, OrderManagementActivity.class);
+                Intent intent = new Intent(LoginActivity.this, CategoryActivity.class);
                 intent.putExtra("LOGIN_USER",ac);
                 startActivity(intent);
             }
@@ -114,6 +165,7 @@ public class LoginActivity extends AppCompatActivity {
             if (radAdmin.isChecked()) {
                 //dĩ nhiên phải check có quyền admin hay không?
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("LOGIN_USER", username);
                 startActivity(intent);
             }
             else {
