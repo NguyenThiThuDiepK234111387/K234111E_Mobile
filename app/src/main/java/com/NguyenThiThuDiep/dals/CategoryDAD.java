@@ -3,6 +3,7 @@ package com.NguyenThiThuDiep.dals;
 import static android.content.Context.MODE_PRIVATE;
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,7 +33,21 @@ public class CategoryDAD {
         }
             cursor.close();
             return categories;
-
-
+    }
+    public static long insertCategory(Context context, Category category)
+    {
+        database = context.openOrCreateDatabase(DATABASE_NAME,context.MODE_PRIVATE,null);
+        ContentValues values = new ContentValues();
+        values.put("CategoryId",category.getCategoryId());
+        values.put("CategoryName",category.getCategoryName());
+        long result = database.insert(TABLE_NAME,null,values);
+        return result;
+    }
+    public static long deleteCategory(Context context, Category category)
+    {
+        database = context.openOrCreateDatabase(DATABASE_NAME,context.MODE_PRIVATE,null);
+        long result = database.delete(TABLE_NAME,"CategoryId=?",
+                new String[]{category.getCategoryId()});
+        return result;
     }
 }

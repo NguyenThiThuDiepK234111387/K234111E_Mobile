@@ -45,6 +45,11 @@
     <string name="str_order_status_not_yetpayment">Đơn hàng chưa được thanh toán</string>
     <string name="str_order_status_going_logistic">Đơn hàng đang vận chuyển</string>
     <string name="str_order_status_customer_complain">Khách hàng phàn nàn về đơn hàng</string>
+    <string name="str_add_new_category">Thêm mới danh mục</string>
+    <string name="str_category_statistic">Phân tích danh mục</string>
+    <string name="str_category_id">ID danh mục </string>
+    <string name="str_category_name">Tên danh mục</string>
+    <string name="str_cancel">Cancel</string>
     <string-array name="list_birthplace">
         <item>TP. Hà Nội</item>
         <item>TP. Hồ Chí Minh</item>

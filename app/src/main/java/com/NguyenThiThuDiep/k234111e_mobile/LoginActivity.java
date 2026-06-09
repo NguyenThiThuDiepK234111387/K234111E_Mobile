@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 //Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 //Intent intent=new Intent(LoginActivity.this, OrderManagementActivity.class);
-                Intent intent = new Intent(LoginActivity.this, CategoryActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MyContactActivity.class);
                 intent.putExtra("LOGIN_USER",ac);
                 startActivity(intent);
             }

@@ -45,6 +45,11 @@
     <string name="str_order_status_not_yetpayment">Not yet Payment Order</string>
     <string name="str_order_status_going_logistic">Going Logistic Order</string>
     <string name="str_order_status_customer_complain">Customer Complain Order</string>
+    <string name="str_add_new_category">Add new category</string>
+    <string name="str_category_statistic">Category statistic</string>
+    <string name="str_category_id">Category ID</string>
+    <string name="str_category_name">Category Name</string>
+    <string name="str_cancel">Cancel</string>
     <string-array name="list_birthplace">
         <item>TP. Hà Nội</item>
         <item>TP. Hồ Chí Minh</item>
