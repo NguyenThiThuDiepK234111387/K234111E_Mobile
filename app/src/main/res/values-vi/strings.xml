@@ -63,8 +63,9 @@
     <string name="str_play_audio_2">Play Audio 2</string>
     <string name="str_uel">University of Economics and Law</string>
     <string name="str_font_and_music">Font and Music</string>
-    <string name="str_gold_api">Gold Price</string>
-    <string name="str_my_contact">My Contact</string>
+    <string name="str_gold_api">Xem tỉ lệ giá vàng</string>
+    <string name="str_my_contact">Xem danh bạ</string>
+    <string name="str_sort_number">Sort number</string>
     <string-array name="list_birthplace">
         <item>TP. Hà Nội</item>
         <item>TP. Hồ Chí Minh</item>

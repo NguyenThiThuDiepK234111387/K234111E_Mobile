@@ -19,6 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.NguyenThiThuDiep.dals.ProductDAO;
 import com.NguyenThiThuDiep.models.DataWareHouse;
 import com.NguyenThiThuDiep.models.Product;
 
@@ -67,6 +68,7 @@ public class MultiThreadingObjectActivity extends AppCompatActivity {
         adapterProduct = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
         lvProduct.setAdapter(adapterProduct);
     }
+
     Handler mainThread=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message message) {
@@ -89,39 +91,30 @@ public class MultiThreadingObjectActivity extends AppCompatActivity {
         }
     });
     public void processDownloadProduct(View view) {
-        int n=Integer.parseInt(edtNumberOfProduct.getText().toString());
-        //thực hiện download sản phẩm thông qua tiểu trình (thread):
-        Thread downloadProductThread=new Thread(new Runnable() {
+        int n = Integer.parseInt(edtNumberOfProduct.getText().toString());
+        Thread downloadProductThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i=0;i<n;i++) {
-                    Product p= DataWareHouse.downloadProduct(i);
-                    int percent=(i+1)*100/n;
-                    if(p==null)
-                    {
-                        //coi như lỗi và dừng luôn tiến trình tải dữ liệu
-                        //có thể vẫn chưa chạy xong.
-                        //hoặc ta không dừng, nhưng bỏ qua 1 vòng lặp
-                        break;//giả sử dừng luôn
-                    }
-                    //lấy message từ MainThread:
-                    Message message=mainThread.obtainMessage();
-                    //truyền thông tin vào message:
-                    message.arg1=percent;//tỉ lệ hoàn thành
-                    message.obj=p;//product tải thành công ở vị trí i
-                    //khi gọi hàm này thì handleMessage(@NonNull Message message)
-                    //của MainThread sẽ nhận được Message
+                ArrayList<Product> allProducts = ProductDAO.getProducts(MultiThreadingObjectActivity.this);
+                int total = Math.min(n, allProducts.size()); // tránh vượt quá số SP có thật trong DB
+
+                for (int i = 0; i < total; i++) {
+                    Product p = allProducts.get(i);
+                    int percent = (i + 1) * 100 / total;
+
+                    Message message = mainThread.obtainMessage();
+                    message.arg1 = percent;
+                    message.obj = p;
                     mainThread.sendMessage(message);
-                    //sau đó giả sử cho tiểu trình tạm nghỉ 1 giây
-                    //để các tiểu trình khác có thể thực hiện
+
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                Message finalMessage=mainThread.obtainMessage();
-                finalMessage.arg1=100;
+                Message finalMessage = mainThread.obtainMessage();
+                finalMessage.arg1 = 100;
                 mainThread.sendMessage(finalMessage);
             }
         });

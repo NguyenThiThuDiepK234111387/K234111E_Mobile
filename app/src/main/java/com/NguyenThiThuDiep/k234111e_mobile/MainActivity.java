@@ -74,4 +74,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this, MyContactActivity.class);
         startActivity(intent);
     }
+
+    public void openViewGoldPriceRate(View view) {
+        Intent intent=new Intent(MainActivity.this, GoldRateAPIActivity.class);
+        startActivity(intent);
+    }
 }

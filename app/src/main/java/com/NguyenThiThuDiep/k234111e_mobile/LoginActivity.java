@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<String[]> permissionLauncher;
 
-    public static final String DATABASE_NAME = "K234111ESales.sqlite";
+    public static final String DATABASE_NAME = "K234111ESale.sqlite";
     public static final String DB_PATH_SUFFIX = "/databases/";
     public static SQLiteDatabase database = null;
     private void copyDataBase(){

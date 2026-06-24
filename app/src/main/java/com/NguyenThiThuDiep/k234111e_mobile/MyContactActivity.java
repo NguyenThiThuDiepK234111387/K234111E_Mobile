@@ -29,6 +29,11 @@ public class MyContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_my_contact);
+        // Xin quyền gọi điện
+        if (checkSelfPermission(android.Manifest.permission.CALL_PHONE)
+                != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, 1);
+        }
         addViews();
         loadMyContacts();
         addEvents();
