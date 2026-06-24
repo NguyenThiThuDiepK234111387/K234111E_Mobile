@@ -36,8 +36,9 @@ public class EmployeeAdvancedManagementActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        super.onCreate(savedInstanceState);
+        getWindow().setBackgroundDrawableResource(android.R.color.white);
         setContentView(R.layout.activity_employee_advanced_management);
         addViews();
         sampleData();

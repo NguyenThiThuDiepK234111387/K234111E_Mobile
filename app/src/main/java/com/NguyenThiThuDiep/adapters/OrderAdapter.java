@@ -35,24 +35,29 @@ public class OrderAdapter extends ArrayAdapter<Order>
         TextView txtOrderDate=custom.findViewById(R.id.txtOrderDate);
         TextView txtStatus=custom.findViewById(R.id.txtStatus);
         TextView txtOrderTotal=custom.findViewById(R.id.txtOrderTotal);
-        txtOrderId.setText(order.getOrderId().toString());
-        txtOrderDate.setText(order.getOrderDate().toString());
-        txtStatus.setText(order.getOrderStatus().getDescription().toString());
-        txtOrderTotal.setText(String.valueOf(DataWareHouse.sumOfValueOrder(order)));
-        switch (order.getOrderStatus()) {
-            case COMPLETED:
-                txtStatus.setTextColor(context.getColor(R.color.order_completed));
-                break;
-            case NOT_YET_PAYMENT:
-                txtStatus.setTextColor(context.getColor(R.color.order_not_yet_payment));
-                break;
-            case GOING_LOGISTIC:
-                txtStatus.setTextColor(context.getColor(R.color.order_going_logistic));
-                break;
-            case CUSTOMER_COMPLAIN:
-                txtStatus.setTextColor(context.getColor(R.color.order_customer_complain));
-                break;
+        txtOrderId.setText(order.getOrderId() != null ? order.getOrderId().toString() : "");
+        txtOrderDate.setText(order.getOrderDate() != null ? order.getOrderDate().toString() : "");
+        if (order.getOrderStatus() != null) {
+            txtStatus.setText(order.getOrderStatus().getDescription());
+            switch (order.getOrderStatus()) {
+                case COMPLETED:
+                    txtStatus.setTextColor(context.getColor(R.color.order_completed));
+                    break;
+                case NOT_YET_PAYMENT:
+                    txtStatus.setTextColor(context.getColor(R.color.order_not_yet_payment));
+                    break;
+                case GOING_LOGISTIC:
+                    txtStatus.setTextColor(context.getColor(R.color.order_going_logistic));
+                    break;
+                case CUSTOMER_COMPLAIN:
+                    txtStatus.setTextColor(context.getColor(R.color.order_customer_complain));
+                    break;
+                default:
+                    txtStatus.setTextColor(context.getColor(R.color.black));
+                    break;
+            }
         }
+        txtOrderTotal.setText(String.valueOf(DataWareHouse.sumOfValueOrder(order)));
         return custom;
     }
 }

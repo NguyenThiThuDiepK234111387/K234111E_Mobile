@@ -9,11 +9,11 @@ import com.NguyenThiThuDiep.models.MyContact;
 
 import java.util.ArrayList;
 
-public class MyContactDAD {
+public class MyContactDAO {
     public static ArrayList<MyContact> getMyContacts(Context context){
         ArrayList<MyContact> contacts=new ArrayList<>();
-        Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
-        Cursor cursor =
+        Uri uri= ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        Cursor cursor=
                 context
                         .getContentResolver()
                         .query(uri,null,null,null,null);
@@ -21,9 +21,9 @@ public class MyContactDAD {
         {
             int nameIndex =cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
             String name = cursor.getString(nameIndex); //Get Name
-            int phoneIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds. Phone.NUMBER);
-            String phone = cursor.getString(phoneIndex); //Get Phone Number
-            MyContact contact = new MyContact(name,phone);
+            int phoneIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            String phone = cursor.getString(phoneIndex); //Get Phone
+            MyContact contact=new MyContact(name,phone);
             contacts.add(contact);
         }
         cursor.close();

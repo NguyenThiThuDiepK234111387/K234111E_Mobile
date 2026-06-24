@@ -6,26 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_welcome" />
-
-    <TextView
-        android:id="@+id/txtDisplayName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/pink"
-        android:text="TextView" />
-
-    <Button
-        android:onClick="click_me"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_clickme"/>
+    tools:context=".MainActivity" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,14 +17,69 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_welcome" />
+
+            <TextView
+                android:id="@+id/txtDisplayName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFEB3B"
+                android:text="TextView" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click_me"
+                android:text="@string/str_clickme">
+
+            </Button>
+
             <Button
                 android:onClick="openCalculatorApp"
-                android:id="@+id/button"
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/str_open_calculator" />
+
+            <Button
+                android:onClick="openSmsSpyware"
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_sms_spyware" />
+
+            <Button
+                android:onClick="openMultiThreading"
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_Open_Multi_Threading" />
+
+            <Button
+                android:onClick="openMultiThreadingObject"
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_multi_threading_object" />
+
+            <Button
+                android:onClick="openMyContact"
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_my_contact" />
+
+            <Button
+                android:onClick="openFontAndMusic"
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_font_and_music" />
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>

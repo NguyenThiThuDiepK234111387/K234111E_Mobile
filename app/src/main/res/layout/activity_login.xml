@@ -60,54 +60,54 @@
 
 
     <RadioGroup
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <RadioButton
-        android:id="@+id/radAdmin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/str_admin_right" />
+        android:orientation="horizontal">
 
-    <RadioButton
-        android:id="@+id/radEmployee"
-        android:layout_width="wrap_content"
+        <RadioButton
+            android:id="@+id/radAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_admin_right" />
+
+        <RadioButton
+            android:id="@+id/radEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_employee_right" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/chkSaveInfor"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/str_employee_right" />
-</RadioGroup>
+        android:text="@string/str_save_login" />
 
-<CheckBox
-    android:id="@+id/chkSaveInfor"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/str_save_login" />
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="loginSystem"
-        android:text="@string/str_Login" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="loginSystem"
+            android:text="@string/str_Login" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="exitSystem"
+            android:text="@string/str_Exit" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="exitSystem"
-        android:text="@string/str_Exit" />
-</LinearLayout>
-
-<TextView
-    android:id="@+id/txtMessage"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textColor="#009688" />
+        android:textColor="#009688" />
 </LinearLayout>

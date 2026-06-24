@@ -14,7 +14,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +27,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.K234111E_Mobile">
+        <activity
+            android:name=".FontAndMusicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MultiThreadingObjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MultiThreadingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SMSSpywareActivity"
+            android:exported="false" />
         <activity
             android:name=".MyContactActivity"
             android:exported="false" />
@@ -39,9 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".AddEmployeeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EmployeeCustomItem"
             android:exported="false" />
         <activity
             android:name=".EmployeeAdvancedManagementActivity"
@@ -66,7 +77,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 
 </manifest>

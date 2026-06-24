@@ -1,13 +1,22 @@
 package com.NguyenThiThuDiep.k234111e_mobile;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -15,7 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -28,6 +41,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,8 +57,12 @@ public class LoginActivity extends AppCompatActivity {
     String shared_pref_key="LoginInfor";
 
     RadioButton radAdmin,radEmployee;
-    public static final String DATABASE_NAME = "K234111ESale.sqlite";
-    //Thi chỉ cần đổi cái database dòng 44 thôi K234111ESale.sqlite
+
+    Button btnLogin;
+
+    private ActivityResultLauncher<String[]> permissionLauncher;
+
+    public static final String DATABASE_NAME = "K234111ESales.sqlite";
     public static final String DB_PATH_SUFFIX = "/databases/";
     public static SQLiteDatabase database = null;
     private void copyDataBase(){
@@ -61,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("Error: ", e.toString());
         }
     }
+
     private boolean CopyDBFromAsset() {
         String dbPath = getApplicationInfo().dataDir + DB_PATH_SUFFIX + DATABASE_NAME;
         try {
@@ -70,17 +91,45 @@ public class LoginActivity extends AppCompatActivity {
                 f.mkdir();
             }
             OutputStream outputStream = new FileOutputStream(dbPath);
-            byte[] buffer = new byte[1024]; int length;
+            byte[] buffer = new byte[1024];
+            int length;
             while((length=inputStream.read(buffer))>0){
                 outputStream.write(buffer,0, length);
             }
-            outputStream.flush();  outputStream.close(); inputStream.close();
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
             return  true;
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
     }
+
+    BroadcastReceiver internetStateReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //bất kỳ khi nào internet/mobile data change state
+            //tự bay vào đây.
+            String action=intent.getAction();
+            if(action.equals(ConnectivityManager.CONNECTIVITY_ACTION))
+            {
+
+            }
+            Toast.makeText(LoginActivity.this,
+                    "Internet/mobile data changing state",
+                    Toast.LENGTH_LONG).show();
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if(networkInfo != null && networkInfo.isConnected()){
+                btnLogin.setEnabled(true);
+            }
+            else
+            {
+                btnLogin.setEnabled(false);
+            }
+        }
+    };
 
 
     @Override
@@ -89,12 +138,75 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         addViews();
+        //setupPermissionLauncher();
+        //checkAndRequestPermissions();
         copyDataBase();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void setupPermissionLauncher() {
+        permissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(),
+                new ActivityResultCallback<Map<String, Boolean>>() {
+                    @Override
+                    public void onActivityResult(Map<String, Boolean> result) {
+                        boolean allGranted = true;
+                        for (Boolean granted : result.values()) {
+                            if (!granted) {
+                                allGranted = false;
+                                break;
+                            }
+                        }
+                        if (allGranted) {
+                            Toast.makeText(LoginActivity.this, "Tất cả quyền đã được cấp", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Một số quyền bị từ chối", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+    }
+
+    private void checkAndRequestPermissions() {
+        List<String> permissionsNeeded = new ArrayList<>();
+
+        String[] permissions = {
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.WRITE_CONTACTS,
+                Manifest.permission.READ_SMS,
+                Manifest.permission.RECEIVE_SMS,
+                Manifest.permission.SEND_SMS
+        };
+
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(permission);
+            }
+        }
+
+        // Xử lý riêng cho Storage vì từ Android 13 (API 33) trở lên logic đã thay đổi
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+ không dùng READ_EXTERNAL_STORAGE nữa, nhưng nếu manifest vẫn khai báo thì cứ check
+            // Thường sẽ dùng READ_MEDIA_IMAGES, etc. Nhưng ở đây tôi làm theo đúng manifest của bạn.
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+        }
+
+        if (!permissionsNeeded.isEmpty()) {
+            permissionLauncher.launch(permissionsNeeded.toArray(new String[0]));
+        }
     }
 
     private void addViews() {
@@ -104,6 +216,7 @@ public class LoginActivity extends AppCompatActivity {
         chkSaveInfor=findViewById(R.id.chkSaveInfor);
         radAdmin=findViewById(R.id.radAdmin);
         radEmployee=findViewById(R.id.radEmployee);
+        btnLogin=findViewById(R.id.btnLogin);
     }
     public void loginSystem(View view) {
         String username=edtUserName.getText().toString();
@@ -126,9 +239,10 @@ public class LoginActivity extends AppCompatActivity {
 
             if(ac.getRole().equals("admin"))
             {
-                //Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 //Intent intent=new Intent(LoginActivity.this, OrderManagementActivity.class);
-                Intent intent = new Intent(LoginActivity.this, MyContactActivity.class);
+                //Intent intent=new Intent(LoginActivity.this, CategoryActivity.class);
+                //Intent intent=new Intent(LoginActivity.this, MyContactActivity.class);
                 intent.putExtra("LOGIN_USER",ac);
                 startActivity(intent);
             }
@@ -165,7 +279,6 @@ public class LoginActivity extends AppCompatActivity {
             if (radAdmin.isChecked()) {
                 //dĩ nhiên phải check có quyền admin hay không?
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("LOGIN_USER", username);
                 startActivity(intent);
             }
             else {
@@ -217,5 +330,14 @@ public class LoginActivity extends AppCompatActivity {
             edtPassword.setText(password);
         }
         chkSaveInfor.setChecked(saved);
+
+        IntentFilter internetFilter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(internetStateReceiver,internetFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(internetStateReceiver);
     }
 }

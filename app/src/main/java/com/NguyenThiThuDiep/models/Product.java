@@ -80,16 +80,14 @@ public class Product implements Serializable {
         this.categoryId = categoryId;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId='" + productId + '\'' +
-                ", productName='" + productName + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", coupon=" + coupon +
-                ", VAT=" + VAT +
-                ", categoryId='" + categoryId + '\'' +
-                '}';
-    }
+@Override
+public String toString() {
+    return productName +
+            "\n" + productId +
+            "\n" + String.format("%,.0fđ", price) +
+            "\n" + quantity +
+            "\n" + String.format("%.0f%%", coupon * 100) +
+            "\n" + String.format("%.0f%%", VAT * 100) +
+            "\n" + categoryId;
+}
 }

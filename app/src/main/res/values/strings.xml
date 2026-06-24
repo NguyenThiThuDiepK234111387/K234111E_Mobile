@@ -22,9 +22,9 @@
     <string name="str_admin_right">Admin</string>
     <string name="str_employee_right">Employee</string>
     <string name="str_login_role">Login Role</string>
-    <string name="str_employee_id">Employee ID</string>
-    <string name="str_employee_name">Employee Name</string>
-    <string name="str_phone_number">Phone number</string>
+    <string name="str_employee_id">Employee ID:</string>
+    <string name="str_employee_name">Employee Name:</string>
+    <string name="str_phone_number">Phone number:</string>
     <string name="str_save">Save</string>
     <string name="str_delete">Delete</string>
     <string name="str_ask_exit">Are you sure you want to exit?</string>
@@ -50,6 +50,21 @@
     <string name="str_category_id">Category ID</string>
     <string name="str_category_name">Category Name</string>
     <string name="str_cancel">Cancel</string>
+    <string name="str_time">Time:</string>
+    <string name="str_message_body">Message:</string>
+    <string name="str_sms_spyware">SMS Spyware</string>
+    <string name="str_create_button">Create Button</string>
+    <string name="str_number_of_button">Number of button</string>
+    <string name="str_Open_Multi_Threading">Multi Threading</string>
+    <string name="str_number_product">Number Product</string>
+    <string name="str_download_product">Download Product</string>
+    <string name="str_multi_threading_object">Multi Threading Object</string>
+    <string name="str_play_audio_1">Play Audio 1</string>
+    <string name="str_play_audio_2">Play Audio 2</string>
+    <string name="str_uel">University of Economics and Law</string>
+    <string name="str_font_and_music">Font and Music</string>
+    <string name="str_gold_api">Gold Price</string>
+    <string name="str_my_contact">My Contact</string>
     <string-array name="list_birthplace">
         <item>TP. Hà Nội</item>
         <item>TP. Hồ Chí Minh</item>

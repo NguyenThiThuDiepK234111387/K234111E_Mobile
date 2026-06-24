@@ -17,7 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.NguyenThiThuDiep.adapters.CategoryAdapter;
-import com.NguyenThiThuDiep.dals.CategoryDAD;
+import com.NguyenThiThuDiep.dals.CategoryDAO;
 import com.NguyenThiThuDiep.models.Category;
 
 import java.util.ArrayList;
@@ -53,10 +53,10 @@ public class CategoryActivity extends AppCompatActivity {
     private void processDeleteCategory(int i) {
         Toast.makeText(this, "Delete category id", Toast.LENGTH_SHORT).show();
         Category category=categories.get(i);
-        long result=CategoryDAD.deleteCategory(this,category);
+        long result= CategoryDAO.deleteCategory(this,category);
         if (result>0)
         {
-            categories= CategoryDAD.getCategories(this);
+            categories= CategoryDAO.getCategories(this);
             adapterCategory.clear();
             adapterCategory.addAll(categories);
             adapterCategory.notifyDataSetChanged();
@@ -66,7 +66,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void addView() {
         lvCategory=findViewById(R.id.lvCategory);
-        categories= CategoryDAD.getCategories(this);
+        categories= CategoryDAO.getCategories(this);
         adapterCategory=new CategoryAdapter(this,R.layout.category_custom_item);
         lvCategory.setAdapter(adapterCategory);
         adapterCategory.addAll(categories);
@@ -95,7 +95,7 @@ public class CategoryActivity extends AppCompatActivity {
             else if (requestCode==1&& resultCode==3)
             {
                 //là user chọn yes -> ta cần cập nhập lại giao diện
-                categories= CategoryDAD.getCategories(this);
+                categories= CategoryDAO.getCategories(this);
                 adapterCategory=new CategoryAdapter(this,R.layout.category_custom_item);
                 lvCategory.setAdapter(adapterCategory);
                 adapterCategory.addAll(categories);

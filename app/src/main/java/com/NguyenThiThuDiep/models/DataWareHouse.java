@@ -20,50 +20,73 @@ public class DataWareHouse {
 
     public static ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
-        //get categories
         ArrayList<Category> categories = getCategories();
-        Product p1 = new Product("p1", "WINECO cà chua đỏ 500 gram",
-                10000, 10, 0, 0,
-                categories.get(0).getCategoryId());
-        Product p2 = new Product("p2", "Rau muống xanh chuẩn Vietgap",
-                500, 100, 0, 0,
-                categories.get(0).getCategoryId());
-        Product p3 = new Product("p3", "Hành Tây 350gram",
-                3500, 30, 0, 0,
-                categories.get(0).getCategoryId());
 
-        Product p4 = new Product("p4", "Tường An Bơ thực vật",
-                9500, 15, 0, 0,
-                categories.get(1).getCategoryId());
-        Product p5 = new Product("p5", "Dầu oliu",
-                13500, 24, 0, 0,
-                categories.get(1).getCategoryId());
+        // Danh mục 1: Rau Xanh - Củ quả (40 items)
+        String[] rauNames = {
+                "Bắp cải xanh", "Súp lơ trắng", "Cà rốt Đà Lạt", "Khoai tây bi", "Ớt chuông đỏ",
+                "Dưa leo baby", "Cà chua bi", "Xà lách mỡ", "Cải ngọt", "Mướp đắng",
+                "Bầu sao", "Bí đao", "Cà tím tròn", "Đậu cô ve", "Đậu bắp",
+                "Giá đỗ sạch", "Nấm kim châm", "Nấm đùi gà", "Rau dền", "Rau mồng tơi",
+                "Rau ngót", "Cần tây Mỹ", "Tỏi Lý Sơn", "Hành lá", "Gừng già",
+                "Sả cây", "Ngò rí", "Khoai lang mật", "Khổ qua rừng", "Rau muống xanh",
+                "Cải bẹ xanh", "Cải thìa", "Đậu Hà Lan", "Ngô ngọt", "Củ cải trắng",
+                "Củ năng", "Khoai môn", "Măng tây", "Bí đỏ", "Rau lang"
+        };
+        for (int i = 0; i < 40; i++) {
+            String id = "p" + (i + 1);
+            String name = rauNames[i % rauNames.length] + (i >= rauNames.length ? " loại " + (i / rauNames.length + 1) : "");
+            double price = 10000 + (i * 500);
+            int qty = 20 + (i % 30);
+            products.add(new Product(id, name, price, qty, 0.05, 0.1, categories.get(0).getCategoryId()));
+        }
 
-        Product p6 = new Product("p6", "Chinsu nước sốt",
-                23500, 14, 0, 0,
-                categories.get(2).getCategoryId());
+        // Danh mục 2: Dầu ăn thực vật (30 items)
+        String[] dauNames = {
+                "Dầu đậu nành Simply", "Dầu Meizan Gold", "Dầu Tường An Cooking", "Dầu Neptune Light",
+                "Dầu Oliu Extra Virgin", "Dầu mè thơm Kiddy", "Dầu lạc nguyên chất", "Dầu dừa tinh luyện",
+                "Dầu hướng dương Simply", "Dầu gạo lứt Simply", "Dầu hạt cải Maggi", "Bơ thực vật Tường An",
+                "Dầu Marvela", "Dầu ăn Cái Lân", "Dầu đậu nành Tiara", "Dầu Oliu Borges",
+                "Dầu hạt lanh", "Dầu hạt óc chó", "Dầu quả bơ", "Dầu Gấc",
+                "Dầu Meizan Đậu nành", "Dầu Tường An Premium", "Dầu Neptune Gold", "Dầu Simply Gạo",
+                "Dầu hướng dương Nga", "Dầu Oliu Pomace", "Dầu mè Nakydaco", "Dầu dừa Vietcoco",
+                "Dầu hạt thông", "Dầu hạnh nhân"
+        };
+        for (int i = 0; i < 30; i++) {
+            String id = "p" + (i + 41);
+            String name = dauNames[i % dauNames.length] + (i >= dauNames.length ? " - " + (i + 1) : "");
+            double price = 30000 + (i * 1500);
+            int qty = 10 + (i % 20);
+            products.add(new Product(id, name, price, qty, 0.02, 0.1, categories.get(1).getCategoryId()));
+        }
 
-        Product p7 = new Product("p7", "Maggi",
-                22500, 17, 0, 0,
-                categories.get(2).getCategoryId());
-        Product p8 = new Product("p8", "Nam Ngư",
-                17500, 22, 0, 0,
-                categories.get(2).getCategoryId());
-        Product p9 = new Product("p9", "Cholimex Food",
-                8500, 19, 0, 0,
-                categories.get(2).getCategoryId());
-
-        products.add(p1);
-        products.add(p2);
-        products.add(p3);
-        products.add(p4);
-        products.add(p5);
-        products.add(p6);
-        products.add(p7);
-        products.add(p8);
-        products.add(p9);
+        // Danh mục 3: Nước sốt (30 items)
+        String[] sotNames = {
+                "Tương ớt Chinsu", "Tương cà Cholimex", "Nước mắm Nam Ngư", "Nước tương Maggi",
+                "Dầu hào Cholimex", "Sốt Mayonnaise Aji-mayo", "Sốt BBQ truyền thống", "Sốt mè rang Kewpie",
+                "Nước mắm Chin-su Cá Hồi", "Sốt Teriyaki Nhật", "Sốt phô mai cay", "Tương đen ăn phở",
+                "Sốt Spaghetti", "Sốt lẩu Thái", "Sốt dầu giấm", "Sốt ướp thịt nướng",
+                "Sốt Curry Ấn Độ", "Tương hột", "Sốt mù tạt vàng", "Nước mắm Phú Quốc",
+                "Nước tương Tam Thái Tử", "Tương ớt siêu cay", "Sốt Salad Nga", "Dầu giấm táo",
+                "Sốt Kim chi", "Sốt cà chua đậm đặc", "Sốt nấm", "Sốt tiêu đen",
+                "Sốt chanh dây", "Nước màu dừa"
+        };
+        for (int i = 0; i < 30; i++) {
+            String id = "p" + (i + 71);
+            String name = sotNames[i % sotNames.length] + (i >= sotNames.length ? " Spec " + (i + 1) : "");
+            double price = 15000 + (i * 1200);
+            int qty = 30 + (i % 40);
+            products.add(new Product(id, name, price, qty, 0, 0.1, categories.get(2).getCategoryId()));
+        }
 
         return products;
+    }
+    public static Product downloadProduct(int i)
+    {
+        ArrayList<Product>products=getProducts();
+        if(i<0 || i>=products.size())
+            return null;
+        return products.get(i);
     }
 
     public static ArrayList<Customer> getCustomers() {

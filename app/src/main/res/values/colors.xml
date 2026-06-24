@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="yellow">#DBCC3D</color>
-    <color name="pink">#FF6699</color>
-    <color name="green">#4CAF50</color>
-    <color name="order_completed">#6A0DAD</color>
-    <color name="order_not_yet_payment">#FF9800</color>
-    <color name="order_going_logistic">#009688</color>
-    <color name="order_customer_complain">#1E90FF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="order_completed">#4CAF50</color>
+    <color name="order_not_yet_payment">#F44336</color>
+    <color name="order_going_logistic">#FF9800</color>
+    <color name="order_customer_complain">#9C27B0</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="pink">#FFC0CB</color>
 </resources>

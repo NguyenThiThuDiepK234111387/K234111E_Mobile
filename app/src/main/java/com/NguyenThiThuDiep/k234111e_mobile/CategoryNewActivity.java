@@ -3,11 +3,8 @@ package com.NguyenThiThuDiep.k234111e_mobile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.NguyenThiThuDiep.dals.CategoryDAD;
+import com.NguyenThiThuDiep.dals.CategoryDAO;
 import com.NguyenThiThuDiep.models.Category;
 
 public class CategoryNewActivity extends AppCompatActivity {
@@ -45,7 +42,7 @@ public class CategoryNewActivity extends AppCompatActivity {
         Category category=new Category();
         category.setCategoryId(edtCategoryId.getText().toString());
         category.setCategoryName(edtCategoryName.getText().toString());
-        long result = CategoryDAD.insertCategory(this,category);
+        long result = CategoryDAO.insertCategory(this,category);
         if (result>0)
         {
             Intent intent=getIntent();

@@ -1,6 +1,5 @@
 package com.NguyenThiThuDiep.dals;
 
-import static android.content.Context.MODE_PRIVATE;
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 import android.content.ContentValues;
@@ -12,7 +11,7 @@ import com.NguyenThiThuDiep.models.Category;
 
 import java.util.ArrayList;
 
-public class CategoryDAD {
+public class CategoryDAO {
     public static final String DATABASE_NAME = "K234111ESale.sqlite"; //tên bản sửa cho đúng
     public static final String TABLE_NAME = "Category"; //đây là cái mình lấy từ bảng category
     public static SQLiteDatabase database = null;

@@ -14,7 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.NguyenThiThuDiep.dals.MyContactDAD;
+import com.NguyenThiThuDiep.dals.MyContactDAO;
 import com.NguyenThiThuDiep.models.MyContact;
 
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ public class MyContactActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_my_contact);
         addViews();
-        addEvents();
         loadMyContacts();
+        addEvents();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -40,17 +40,16 @@ public class MyContactActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
-        lvMyContact.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        lvMyContact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 MyContact contact=contacts.get(i);
-                processSendSMS(contact);
-        }
-    });
+                processDirectCall(contact);
+            }
+        });
     }
 
-    private void processSendSMS(MyContact contact) {
+    private void processDirectCall(MyContact contact) {
         String phone=contact.getPhone();
         Intent intent=new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:"+phone));
@@ -59,7 +58,7 @@ public class MyContactActivity extends AppCompatActivity {
 
     private void loadMyContacts() {
         contacts.clear();
-        contacts= MyContactDAD.getMyContacts(this);
+        contacts= MyContactDAO.getMyContacts(this);
         adapterMyContact.clear();
         adapterMyContact.addAll(contacts);
         adapterMyContact.notifyDataSetChanged();
@@ -67,7 +66,7 @@ public class MyContactActivity extends AppCompatActivity {
 
     private void addViews() {
         lvMyContact=findViewById(R.id.lvMyContact);
-        contacts =new ArrayList<>();
+        contacts=new ArrayList<>();
         adapterMyContact=new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 contacts);
