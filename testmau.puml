@@ -1,0 +1,200 @@
+@startuml
+class com.NguyenThiThuDiep.models.Employee {
+- String employeeId
+- String employeeName
+- String phoneNumber
+- String birthPlace
++ String getBirthPlace()
++ void setBirthPlace(String)
++ String getEmployeeId()
++ void setEmployeeId(String)
++ String getEmployeeName()
++ void setEmployeeName(String)
++ String getPhoneNumber()
++ void setPhoneNumber(String)
++ String toString()
+}
+
+
+class com.NguyenThiThuDiep.models.OrderDetail {
+- String oderDetailId
+- String orderId
+- String productId
+- int quantity
+- double price
+- double coupon
+- double VAT
++ String getOderDetailId()
++ void setOderDetailId(String)
++ String getOrderId()
++ void setOrderId(String)
++ String getProductId()
++ void setProductId(String)
++ int getQuantity()
++ void setQuantity(int)
++ double getPrice()
++ void setPrice(double)
++ double getCoupon()
++ void setCoupon(double)
++ double getVAT()
++ void setVAT(double)
++ String toString()
+}
+
+
+class com.NguyenThiThuDiep.models.Customer {
+- String customerId
+- String customerName
+- String phoneNumber
+- String email
+- String address
++ String toString()
+}
+
+
+class com.NguyenThiThuDiep.models.MyContact {
+- String name
+- String phone
++ String getName()
++ void setName(String)
++ String getPhone()
++ void setPhone(String)
++ String toString()
+}
+
+
+class com.NguyenThiThuDiep.models.ListUserAccount {
++ {static} ArrayList<UserAccount> listUserAccounts()
++ {static} UserAccount login(String,String)
+}
+
+class com.NguyenThiThuDiep.models.UserAccount {
+- String username
+- String password
+- String role
+- boolean isSaved
+- String displayName
++ String getDisplayName()
++ void setDisplayName(String)
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
++ String getRole()
++ void setRole(String)
++ boolean isSaved()
++ void setSaved(boolean)
++ String toString()
+}
+
+
+class com.NguyenThiThuDiep.models.Order {
+- String orderId
+- String customerId
+- String employeeId
+- Date orderDate
+- OrderStatus orderStatus
+~ {static} SimpleDateFormat sdf
++ OrderStatus getOrderStatus()
++ void setOrderStatus(OrderStatus)
++ String getOrderId()
++ void setOrderId(String)
++ String getCustomerId()
++ void setCustomerId(String)
++ String getEmployeeId()
++ void setEmployeeId(String)
++ Date getOrderDate()
++ void setOrderDate(Date)
++ String toString()
+}
+
+
+enum com.NguyenThiThuDiep.models.OrderStatus {
++  ALL
++  COMPLETED
++  NOT_YET_PAYMENT
++  GOING_LOGISTIC
++  CUSTOMER_COMPLAIN
+- String description
++ String getDescription()
+}
+
+
+class com.NguyenThiThuDiep.models.Category {
+- String categoryId
+- String categoryName
++ String getCategoryId()
++ void setCategoryId(String)
++ String getCategoryName()
++ void setCategoryName(String)
++ String toString()
+}
+
+
+class com.NguyenThiThuDiep.models.Department {
+- String departmentId
+- String departmentName
+- ArrayList<Employee> listOfEmployee
++ String getDepartmentId()
++ void setDepartmentId(String)
++ String getDepartmentName()
++ void setDepartmentName(String)
++ String toString()
++ void addEmployee(Employee)
++ void addListEmployee(ArrayList<Employee>)
++ ArrayList<Employee> getListOfEmployee()
++ Object getId()
+}
+
+
+class com.NguyenThiThuDiep.models.DataWareHouse {
++ {static} ArrayList<Category> getCategories()
++ {static} ArrayList<Product> getProducts()
++ {static} Product downloadProduct(int)
++ {static} ArrayList<Customer> getCustomers()
++ {static} ArrayList<Employee> getEmployees()
++ {static} ArrayList<Order> getOrders()
++ {static} ArrayList<OrderDetail> getOrderDetails()
++ {static} double sumOfValueOrder(Order)
++ {static} ArrayList<Order> filterOrdersByDate(Date,Date)
++ {static} ArrayList<Order> filterOrderByStatus(OrderStatus)
++ {static} ArrayList<Order> filterOrderByStatusAndDate(OrderStatus,Date,Date)
+}
+
+class com.NguyenThiThuDiep.models.Product {
+- String productId
+- String productName
+- double price
+- int quantity
+- double coupon
+- double VAT
+- String categoryId
++ String getProductId()
++ void setProductId(String)
++ String getProductName()
++ void setProductName(String)
++ double getPrice()
++ void setPrice(double)
++ int getQuantity()
++ void setQuantity(int)
++ double getCoupon()
++ void setCoupon(double)
++ double getVAT()
++ void setVAT(double)
++ String getCategoryId()
++ void setCategoryId(String)
++ String toString()
+}
+
+
+
+
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.Employee
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.OrderDetail
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.Customer
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.MyContact
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.UserAccount
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.Order
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.Category
+java.io.Serializable <|.. com.NguyenThiThuDiep.models.Product
+@enduml

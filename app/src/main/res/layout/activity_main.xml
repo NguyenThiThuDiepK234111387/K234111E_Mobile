@@ -86,6 +86,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/str_gold_api" />
+
+            <Button
+                android:onClick="openNewsSearch"
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_news_search" />
         </LinearLayout>
     </ScrollView>
 

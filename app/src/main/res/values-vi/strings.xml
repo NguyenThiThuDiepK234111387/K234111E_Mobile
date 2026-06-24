@@ -66,6 +66,7 @@
     <string name="str_gold_api">Xem tỉ lệ giá vàng</string>
     <string name="str_my_contact">Xem danh bạ</string>
     <string name="str_sort_number">Sort number</string>
+    <string name="str_news_search">News Search</string>
     <string-array name="list_birthplace">
         <item>TP. Hà Nội</item>
         <item>TP. Hồ Chí Minh</item>

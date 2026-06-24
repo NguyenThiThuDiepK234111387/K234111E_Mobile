@@ -1,10 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F0F2F8"
+    android:padding="16dp"
     tools:context=".NewsSearchActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:text="@string/str_news_search"
+        android:textAlignment="center"
+        android:textColor="#3D5AFE"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <!-- Search Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#E8EAF6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Search row: EditText + 2 icon buttons cùng 1 hàng ngang -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Search input – dùng style mặc định Android -->
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="What's happening?"
+                    android:textSize="16sp"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"/>
+
+                <!-- Icon Mic – Voice Recognition -->
+                <ImageButton
+                    android:id="@+id/btnVoice"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_micro" />
+
+                <!-- Icon Search – Google Custom Search -->
+                <ImageButton
+                    android:id="@+id/btnSearch"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_search" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- News Content label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="News Content:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#3D5AFE"
+        android:paddingTop="24dp"
+        android:paddingBottom="10dp"/>
+
+    <!-- Result Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#E8EAF6">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtNewsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No news yet"
+                android:textColor="#555555"
+                android:textSize="14sp"
+                android:padding="16dp"
+                android:lineSpacingExtra="4dp"/>
+
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

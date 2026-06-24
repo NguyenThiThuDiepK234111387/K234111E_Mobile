@@ -79,4 +79,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this, GoldRateAPIActivity.class);
         startActivity(intent);
     }
+
+    public void openNewsSearch(View view) {
+        Intent intent=new Intent(MainActivity.this, NewsSearchActivity.class);
+        startActivity(intent);
+    }
 }
