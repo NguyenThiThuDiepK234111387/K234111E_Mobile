@@ -84,4 +84,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this, NewsSearchActivity.class);
         startActivity(intent);
     }
+
+    public void openLearnFireBase(View view) {
+        Intent intent=new Intent(MainActivity.this, LearnFireBaseActivity.class);
+        startActivity(intent);
+    }
 }
