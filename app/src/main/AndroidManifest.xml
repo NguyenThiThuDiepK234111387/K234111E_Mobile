@@ -31,6 +31,18 @@
         android:theme="@style/Theme.K234111E_Mobile"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".OrderFirebaseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".OrderDetailFirebaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductFirebaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryFirebaseActivity"
+            android:exported="true" />
+        <activity
             android:name=".DetailContactActivity"
             android:exported="false" />
         <activity

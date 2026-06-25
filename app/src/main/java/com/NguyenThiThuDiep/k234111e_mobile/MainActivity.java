@@ -89,4 +89,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this, LearnFireBaseActivity.class);
         startActivity(intent);
     }
+
+    public void openCategoryFirebase(View view) {
+        Intent intent = new Intent(MainActivity.this, CategoryFirebaseActivity.class);
+        startActivity(intent);
+    }
+
+    public void openOrderFirebase(View view) {
+        Intent intent = new Intent(MainActivity.this, OrderFirebaseActivity.class);
+        startActivity(intent);
+    }
 }

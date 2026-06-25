@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "329809950297",
-    "project_id": "k234111e-mobile-d0eee",
-    "storage_bucket": "k234111e-mobile-d0eee.firebasestorage.app"
+    "project_number": "1010687892823",
+    "firebase_url": "https://k234111emobile-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "k234111emobile",
+    "storage_bucket": "k234111emobile.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:329809950297:android:9b4cd8d1ae51d8035be348",
+        "mobilesdk_app_id": "1:1010687892823:android:38dd3d9e02adadedfff212",
         "android_client_info": {
           "package_name": "com.NguyenThiThuDiep.k234111e_mobile"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBouYzVexj4Cax_DfKtdD6cG6e9Km3yZCk"
+          "current_key": "AIzaSyBiAAlc1YWWSKWQkjwmCtUenEem9fJCXlI"
         }
       ],
       "services": {

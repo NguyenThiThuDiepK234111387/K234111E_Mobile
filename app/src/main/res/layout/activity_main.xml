@@ -100,6 +100,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/str_learn_fire_base" />
+
+            <Button
+                android:onClick="openCategoryFirebase"
+                android:id="@+id/btnCategoryFirebase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open Category Firebase" />
+
+            <Button
+                android:onClick="openOrderFirebase"
+                android:id="@+id/btnOrderFirebase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open Order Firebase" />
         </LinearLayout>
     </ScrollView>
 
